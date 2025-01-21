@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medical Data Collection</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Medical Data Collection</h1>
+
+      <form id="dataCollectionForm">
+        <label for="fileNumber">Medical File Number:</label>
+        <input type="text" id="fileNumber" required />
+
+        <label for="name">Patient Name:</label>
+        <input type="text" id="name" required />
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" required />
+
+        <label for="sex">Sex:</label>
+        <select id="sex">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+
+        <label for="coverage">Coverage:</label>
+        <input type="text" id="coverage" />
+
+        <label for="medicalHistory">Past Medical History:</label>
+        <textarea id="medicalHistory"></textarea>
+
+        <label for="operations">Operations:</label>
+        <textarea id="operations"></textarea>
+
+        <label for="images">Upload Images:</label>
+        <input type="file" id="images" accept="image/*" multiple />
+
+        <button type="submit">Submit Data</button>
+      </form>
+
+      <h2>Search Data</h2>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search by File Number or Name"
+        oninput="filterData()"
+      />
+
+      <h2>Collected Data</h2>
+      <table id="dataTable">
+        <thead>
+          <tr>
+            <th>File Number</th>
+            <th>Patient Name</th>
+            <th>DOB</th>
+            <th>Sex</th>
+            <th>Coverage</th>
+            <th>Medical History</th>
+            <th>Operations</th>
+            <th>Images</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

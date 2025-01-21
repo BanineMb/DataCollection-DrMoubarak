@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patient Details</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Patient Details</h1>
+
+      <div id="patientDetails"></div>
+
+      <button onclick="window.history.back()">Back to Data</button>
+    </div>
+
+    <script>
+      // Retrieve the file number from the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const fileNumber = urlParams.get('fileNumber');
+
+      // Get data from localStorage
+      const collectedData = JSON.parse(localStorage.getItem('collectedData')) || [];
+      const patientData = collectedData.find(data => data.fileNumber === fileNumber);
+
+      if (patientData) {
+          const detailsDiv = document.getElementById('patientDetails');
+          detailsDiv.innerHTML = `
+              <h3>File Number: ${patientData.fileNumber}</h3>
+              <p><strong>Patient Name:</strong> ${patientData.name}</p>
+              <p><strong>Date of Birth:</strong> ${patientData.dob}</p>
+              <p><strong>Sex:</strong> ${patientData.sex}</p>
+              <p><strong>Coverage:</strong> ${patientData.coverage}</p>
+              <p><strong>Past Medical History:</strong> ${patientData.medicalHistory}</p>
+              <p><strong>Operations:</strong> ${patientData.operations}</p>
+              <p><strong>Images:</strong></p>
+              <div>
+                  ${patientData.imageUrls.map(url => <img src="${url}" alt="Image" width="100">).join(' ')}
+              </div>
+          `;
+      } else {
+          document.getElementById('patientDetails').innerHTML = '<p>Patient not found.</p>';
+      }
+    </script>
+  </body>
+</html>
